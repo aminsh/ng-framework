@@ -4,7 +4,7 @@
     paths: {
         'external': 'lib/external',
         'helper': 'lib/helper',
-        'jQuery': 'lib/external/jquery-2.1.1.min',
+        'jQuery': 'lib/external/jquery.min',
         'angular': 'lib/external/angular.min',
         'angular-animate': 'lib/external/angular-animate.min',
         'angular-route': 'lib/external/angular-route.min',
@@ -18,21 +18,10 @@
         'ui-bootstrap': 'lib/external/ui-bootstrap.min',
         'ui-bootstrap-tpls': 'lib/external/ui-bootstrap-tpls.min',
         'domReady': 'lib/helper/domReady',
-        'kendo': 'lib/external/kendo.all.min',
-        'date-fa-Ir': 'lib/external/datetools/fa-IR',
-        'date-JalaliDate': 'lib/external/datetools/JalaliDate',
-        'date-core': 'lib/external/datetools/kendo.core',
-        'date-calendar': 'lib/external/datetools/kendo.calendar',
-        'date-datepicker': 'lib/external/datetools/kendo.datepicker',
-        'date-popup': 'lib/external/datetools/kendo.popup',
+        'kendo': 'lib/external/kendo.all.2015.2.624.hasPersian',
+        'kendo-culture': 'lib/external/kendo.culture.fa.IR',
+        'jalaliDate': 'lib/external/jalaliDate',
         'toastr': 'lib/external/toastr.min',
-
-        'calendar': 'lib/external/calendar',
-        'jquery-Bootstrap-PersianDateTimePicker': 'lib/external/jquery.Bootstrap-PersianDateTimePicker',
-
-        'persian-date': 'lib/external/persian-date/persian-date-0.1.8.min',
-        'persian-datepicker': 'lib/external/persian-date/persian-datepicker-0.4.5.min',
-
         'plupload': 'lib/external/plupload.full.min',
         'inifinitescroll': 'lib/external/jquery.infinitescroll',
         'logger': 'service/logger',
@@ -89,22 +78,12 @@
             exports: 'domReady',
             deps: ['jQuery']
         },
-        'kendo': {exports: 'kendo', deps: ['jQuery']},
-        'date-JalaliDate': {exports: 'date-JalaliDate'},
-        'date-core': {exports: 'date-core'},
-        'date-calendar': {exports: 'date-calendar', deps: ['date-core']},
-        'date-popup': {exports: 'date-popup', deps: ['date-core']},
-        'date-datepicker': {exports: 'date-datepicker', deps: ['date-calendar', 'date-popup']},
-        'date-fa-Ir': {exports: 'date-fa-Ir', deps: ['date-calendar', 'date-JalaliDate']},
+        'kendo': {exports: 'kendo', deps: ['jQuery', 'jalaliDate']},
+        'kendo-culture': {exjports: 'kendo-culture', deps: ['kendo']},
+        'jalaliDate': {exports: 'jalaliDate'},
         'toastr': {exports: 'toastr', deps: ['jQuery']},
         'logger': {exports: 'logger', deps: ['toastr']},
         'confrm': {exports: 'conform', deps: ['ui-bootstrap-tpls']},
-
-        'persian-date': {exports: 'persian-date', deps: ['jQuery']},
-        'persian-datepicker': {exports: 'persian-datepicker', deps: ['persian-date']},
-
-        'jquery-Bootstrap-PersianDateTimePicker': { exports: 'jquery-Bootstrap-PersianDateTimePicker', deps: ['bootstrap', 'calendar'] },
-
         'plupload': {exports: 'plupload', deps: ['jQuery']},
         'inifinitescroll': {exports: 'inifinitescroll', deps: ['jQuery']}
     }
@@ -126,12 +105,13 @@ require([
 
         'directives/content',
         'directives/numeric',
+        'directives/datepicker',
+        'directives/grid',
 
         'logger',
         'confirm',
         'service/translate',
 
-        'jquery-Bootstrap-PersianDateTimePicker',
         'domReady!'
     ],
     function () {

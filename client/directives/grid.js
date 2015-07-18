@@ -1,5 +1,5 @@
 define(['app', 'kendo'], function (app) {
-    app.register.directive('grid', function () {
+    (app.register || app).directive('ctagGrid', function () {
         return {
             restrict: 'E',
             template: '<div></div>',
@@ -13,28 +13,34 @@ define(['app', 'kendo'], function (app) {
             },
             link: function (scope, element, attrs) {
                 var cols = scope.columns
-                    .toEnumerable().select(function (col) {
+                    .toEnumerable().Select(function (col) {
                     return {
                         field: col.name,
                         title: col.title,
                         width: col.width,
                         format: col.format,
-                        template: col.template
+                        template: col.template,
+                        filterable: getFilterable(col.type)
                     }
+                }).ToArray();
+
+                var model = {fields:{}};
+                scope.columns.forEach(function (col) {
+                    model.fields[col.name] = {type: col.type};
                 });
 
                 var commands = scope.commands.
-                    toEnumerable().select(function (cmd) {
-                    return {
-                        text: cmd.title,
-                        imageClass: cmd.imageClass,
-                        click: function (e) {
-                            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                            cmd.action(dataItem);
-                            e.preventDefault();
-                        }
-                    };
-                });
+                    toEnumerable().Select(function(cmd) {
+                        return {
+                            text: cmd.title,
+                            imageClass: cmd.imageClass,
+                            click: function(e) {
+                                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                                cmd.action(dataItem);
+                                e.preventDefault();
+                            }
+                        };
+                    }).ToArray();
 
                 if (scope.commandTemplate)
                     cols.push({template: kendo.template($(scope.commandTemplate.template).html())});
@@ -57,19 +63,31 @@ define(['app', 'kendo'], function (app) {
                         schema: {
                             data: "Data",
                             total: "Total",
-                            model: {
-                                fields: {
-                                    price: {type: "number"},
-                                    title: {type: "string"}
-                                }
-                            }
+                            model: model
                         },
                         pageSize: scope.pageSize || 20,
                         serverPaging: true,
                         serverFiltering: true,
                         serverSorting: true
                     },
-                    filterable: true,
+                    filterable: {
+                        mode: 'row',
+                        operators: {
+                            string: {contains: 'Contains'},
+                            number: {
+                                eq: 'Equal to',
+                                gte: "Greater than or equal to",
+                                gt: "Greater than",
+                                lte: "Less than or equal to",
+                                lt: "Less than"
+                            },
+                            date: {
+                                gt: "After",
+                                lt: "Before",
+                                eq: "Equal"
+                            }
+                        }
+                    },
                     pageable: true,
                     sortable: true,
                     columns: cols
@@ -87,6 +105,25 @@ define(['app', 'kendo'], function (app) {
                     scope.option.refresh = function () {
                         grid.dataSource.read();
                     };
+
+                function getFilterable(type){
+                    var filterable = {};
+
+                    if(type == 'string'){
+                        filterable.cell =  {
+                            operator: "contains",
+                            showOperators: false
+                        }
+                    }
+
+                    if(type == 'number'){
+                        filterable.cell =  {
+                            operator: "eq"
+                        }
+                    }
+
+                    return filterable;
+                }
             }
         };
     });

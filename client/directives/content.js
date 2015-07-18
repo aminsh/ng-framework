@@ -1,5 +1,5 @@
 define(['app'], function(app){
-    app.directive('content', function(){
+    app.directive('ctagContent', function(){
         return {
           restrict: 'E',
           templateUrl: 'client/directives/templates/content-template.html',
