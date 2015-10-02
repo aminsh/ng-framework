@@ -1,0 +1,29 @@
+{
+  "name": "ng-framework",
+  "version": "1.0.0",
+  "authors": [
+    "Amin sheikhi <aminsheikhi@gmail.com>"
+  ],
+  "description": "Framework for angularjs",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-helper": "git://github.com/aminsh/js-helper.git",
+    "angular": "~1.4.6",
+    "angular-animate": "~1.4.6",
+    "angular-resource": "~1.4.6",
+    "angular-route": "~1.4.6",
+    "angular-sanitize": "~1.4.6",
+    "angular-translate": "~2.8.0",
+    "requirejs": "~2.1.20",
+    "toaster": "~0.4.15",
+    "angular-bootstrap": "~0.13.4",
+    "bootstrap-rtl": "~3.3.4"
+  }
+}
