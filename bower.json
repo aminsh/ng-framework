@@ -24,6 +24,7 @@
     "requirejs": "~2.1.20",
     "toaster": "~0.4.15",
     "angular-bootstrap": "~0.13.4",
-    "bootstrap-rtl": "~3.3.4"
+    "bootstrap-rtl": "~3.3.4",
+    "toastr": "~2.1.2"
   }
 }
