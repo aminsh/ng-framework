@@ -3,11 +3,11 @@ define({
         var cssfileNames = [
             '/bower_components/bootstrap/dist/css/bootstrap.min.css',
             '/bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.min.css',
-            '/bower_components/toaster/toaster.min.css',
+            '/bower_components/toastr/toastr.min.css',
             'src/core/content/styles.css',
-            'kendo.common.min.css',
-            'kendo.material.min.css',
-            'kendo.rtl.min.css'
+            'src/core/content/kendo/kendo.common.min.css',
+            'src/core/content/kendo/kendo.material.min.css',
+            'src/core/content/kendo/kendo.rtl.min.css'
         ];
 
         $.each(cssfileNames, function (i, item) {

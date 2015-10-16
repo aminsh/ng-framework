@@ -22,6 +22,7 @@ requirejs.config({
         //'inifinitescroll': 'lib/external/jquery.infinitescroll',
         'logger': 'core/services/logger',
         'confirm': 'core/services/confirm',
+        'translate': 'core/services/translate',
         'routeResolver': 'core/services/routeResolver',
         'routeConfig': 'app/route.config',
 
@@ -84,12 +85,27 @@ requirejs.config({
             exports: 'domReady',
             deps: ['jQuery']
         },
+        'toastr': {
+            exports: 'toastr',
+            deps: ['jQuery']
+        },
+        'logger': {
+            exports: 'logger',
+            deps: ['toastr', 'appModule']
+        },
+        'confirm': {
+            exports: 'confirm',
+            deps: ['ui-bootstrap-tpls', 'appModule']
+        },
+        'translate': {
+            exports: 'translate',
+            deps: ['appModule']
+        },
         'kendo': {exports: 'kendo', deps: ['jQuery', 'jalaliDate']},
         'kendo-culture': {exjports: 'kendo-culture', deps: ['kendo']},
         'jalaliDate': {exports: 'jalaliDate'},
-        'toastr': {exports: 'toastr', deps: ['jQuery']},
-        'logger': {exports: 'logger', deps: ['toastr']},
-        'confrm': {exports: 'conform', deps: ['ui-bootstrap-tpls']},
+
+
         //'plupload': {exports: 'plupload', deps: ['jQuery']},
         //'inifinitescroll': {exports: 'inifinitescroll', deps: ['jQuery']}
 
@@ -110,7 +126,9 @@ require([
         'routeConfig',
         'menu',
         'content',
-        'logger'
+        'logger',
+        'confirm',
+        'translate'
     ],
     function () {
         angular.module('appModule').init();
