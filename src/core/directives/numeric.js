@@ -1,33 +1,24 @@
-define(['appModule', 'kendo'],function(appModule){
-    appModule.directive('ctagNumeric', function(){
+define(['appModule', 'kendo/js/kendo.numerictextbox'], function () {
+    angular.module('appModule').directive('ctagNumeric', function () {
         return {
             restrict: 'E',
-            template: '<input ng-model="model"/>',
+            template: '<input kendo-numerictextbox options="options"/>',
             replace: true,
             scope: {
                 model: '=',
                 isprice: '@'
             },
-            link: function(scope, element, attrs){
+            link: function (scope, element, attrs) {
                 var option = {
-                    decimals: 0,
-                    change: function(){
-                        scope.model = this.value();
-                    }
+                    decimals: 0
                 };
 
-                if(attrs.isprice == 'true')
+                if (attrs.hasOwnProperty('price'))
                     option.format = 'n0';
                 else
                     option.format = '0';
 
-                $(element).kendoNumericTextBox(option);
-
-                var numerictextbox = $(element).data("kendoNumericTextBox");
-
-                scope.$watch('model',function(newValue){
-                    numerictextbox.value(newValue);
-                });
+                scope.options = option;
             }
         }
     })
