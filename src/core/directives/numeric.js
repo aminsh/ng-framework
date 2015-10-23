@@ -4,10 +4,7 @@ define(['appModule', 'kendo/js/kendo.numerictextbox'], function () {
             restrict: 'E',
             template: '<input kendo-numerictextbox options="options"/>',
             replace: true,
-            scope: {
-                model: '=',
-                isprice: '@'
-            },
+            scope: {},
             link: function (scope, element, attrs) {
                 var option = {
                     decimals: 0
