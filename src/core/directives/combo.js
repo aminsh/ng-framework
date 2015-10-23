@@ -1,5 +1,5 @@
-define(['appModule', 'kendo/js/kendo.combobox'], function (appModule) {
-    appModule.directive('ctagCombo', function () {
+define(['kendo/js/kendo.combobox'], function () {
+    angular.module('appModule').directive('ctagCombo', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -37,7 +37,7 @@ define(['appModule', 'kendo/js/kendo.combobox'], function (appModule) {
                         },
                         schema: {
                             parse: function (response) {
-                                return response.Data;
+                                return response.data;
                             }
                         }
                     },
