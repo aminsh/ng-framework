@@ -1,10 +1,11 @@
-define(['appModule', 'kendo', 'service/gridFilterCell'], function (appModule) {
-    appModule.directive('ctagGrid', function (gridFilterCell) {
+define(['kendo/js/kendo.grid'], function (appModule) {
+    angular.module('appModule').directive('ctagGrid', function (gridFilterCellType) {
         return {
             restrict: 'E',
-            template: '<div></div>',
+            template: '<div kendo-grid options="options"></div>',
             scope: {
-                option: '=',
+                control: '=',
+                datasource: '=',
                 readUrl: '@',
                 pageSize: '=',
                 columns: '=',
@@ -66,9 +67,8 @@ define(['appModule', 'kendo', 'service/gridFilterCell'], function (appModule) {
                         }
                     }
                 };
-
-                var grid = $(element).kendoGrid({
-                    dataSource: {
+                scope.options = {
+                    dataSource: scope.datasource || new kendo.data.DataSource({
                         transport: {
                             read: {
                                 url: attrs.readurl,
@@ -89,12 +89,12 @@ define(['appModule', 'kendo', 'service/gridFilterCell'], function (appModule) {
                         serverPaging: true,
                         serverFiltering: true,
                         serverSorting: true
-                    },
+                    }),
                     filterable: filterable,
                     pageable: {refresh: true},
                     sortable: true,
                     columns: cols
-                }).data("kendoGrid");
+                };
 
                 if (scope.commandTemplate)
                     scope.commandTemplate.commands.forEach(function (cmd) {
@@ -104,15 +104,15 @@ define(['appModule', 'kendo', 'service/gridFilterCell'], function (appModule) {
                         });
                     });
 
-                if (!isNullOrEmpty(scope.option))
+                if (scope.option)
                     scope.option.refresh = function () {
-                        grid.dataSource.read();
+                        scope.options.dataSource.read();
                     };
 
                 function getFilterable(type) {
                     var filterable = {};
 
-                    filterable.cell = gridFilterCell[type];
+                    filterable.cell = gridFilterCellType[type];
 
                     return filterable;
                 }
