@@ -1,11 +1,14 @@
-define(['appModule', 'kendo'], function (appModule) {
+define(['appModule'], function () {
+    angular.module('appModule').provider('gridFilterCellType', function () {
+        var type = {
+            string: "string",
+            number: "number"
+        }
 
-    appModule.factory('gridFilterCell', function (enums) {
-
-        function combo(element,option) {
+        function combo(element, option) {
             element.kendoComboBox({
                 placeholder: '...',
-                dataTextField: option.display,
+                dataTextField: option.text,
                 dataValueField: option.value,
                 valuePrimitive: true,
                 filter: "contains",
@@ -22,16 +25,18 @@ define(['appModule', 'kendo'], function (appModule) {
                             return kendo.stringify(options);
                         }
                     },
-                    schema:{
-                        parse: function(response){
+                    schema: {
+                        parse: function (response) {
                             return response.Data;
                         }
                     }
-                }});
+                }
+            });
         }
-        function dropdown(element, option){
+
+        function dropdown(element, option) {
             element.kendoDropDownList({
-                dataTextField: option.display,
+                dataTextField: option.text,
                 dataValueField: option.value,
                 filter: "contains",
                 autoBind: false,
@@ -41,24 +46,19 @@ define(['appModule', 'kendo'], function (appModule) {
             })
         }
 
-        var string = {
-            operator: "contains",
-            showOperators: false
+        this.control = {
+            combo: combo,
+            dropdown: dropdown
         }
 
-        var number = {
-            operator: "eq"
+        this.$get = function () {
+            debugger;
+            return type;
         }
 
-        return {
-            type: {
-                string: string,
-                number: number
-            },
-            control:{
-                combo: combo,
-                dropdown: dropdown()
-            }
-        };
-    });
-});
+        this.set = function (extendedObject) {
+            debugger;
+            type = angular.extend(type, extendedObject);
+        }
+    })
+})
