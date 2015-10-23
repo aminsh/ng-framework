@@ -1,4 +1,5 @@
-function homeController($scope, confirm, logger){
+function homeController($scope, confirm, logger, gridFilterCellType) {
+    debugger;
     $scope.title = "Home";
     $scope.save = function (form) {
         debugger;
