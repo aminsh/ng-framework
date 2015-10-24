@@ -1,3 +1,7 @@
-/**
- * Created by Developer on 9/25/2015.
- */
+define(['appModule', 'angular-translate-loader-url'], function () {
+    appModule.config(function ($translateProvider) {
+        $translateProvider.useUrlLoader('bar.json');
+        $translateProvider.preferredLanguage('en_US');
+        $translateProvider.useSanitizeValueStrategy('escapeParameters');
+    });
+});
