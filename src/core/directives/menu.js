@@ -19,7 +19,9 @@ angular.module('appModule').directive('ctagTogglemenu', function () {
         restrict: 'E',
         templateUrl: 'src/core/directives/templates/togglemenu-template.html',
         replace: true,
-        scope: {},
+        scope: {
+            menuitems: '='
+        },
         transclude: true,
         link: function (scope, element, attrs) {
             $("#menu-toggle").click(function (e) {

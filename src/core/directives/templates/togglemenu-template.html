@@ -27,37 +27,25 @@
                                 
                             </li>
 
-                            <li class="init-arrow-down">
-                                <a>
+                            <li class="init-arrow-down" ng-repeat="item in menuitems">
+                                <a href="#/{{item.url}}">
                                     <span class="webfont-textfile webfont-menu " aria-hidden="true">
-                                        <span class="glyphicon glyphicon-plane webfont-order-cart" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-plane {{item.icon}}" aria-hidden="true"></span>
                                     </span>
-                                    <span class="gw-menu-text">سفارش بلیط</span><b class="gw-arrow icon-arrow-up8"></b>
+                                    <span class="gw-menu-text">{{item.title}}</span>
+                                    <b class="gw-arrow icon-arrow-up8"></b>
                                 </a>
                                 <ul class="gw-submenu">
-                                    <li> <a href="#/orderTickets"><span class="webfont-submenu fa-list"></span>لیست بلیط ها</a> </li>
-                                    <li> <a href="#/orderTicket/create"><span class="webfont-submenu fa-newgood"></span>ایجاد بلیط جدید</a> </li>
-
-
+                                    <li ng-repeat="child in item.children">
+                                        <a href="#/{{child.url}}">
+                                            <span class="webfont-submenu {{child.icon}}"></span>
+                                            {{child.title}}
+                                        </a>
+                                    </li>
                                 </ul>
 
                             </li>
 
-                            <li class="init-arrow-down">
-                                <a >
-                                    <span class="fa-infobased webfont-menu" aria-hidden="true"></span> <span class="gw-menu-text">اطلاعات پایه</span>
-                                    <b class="gw-arrow"></b>
-                                </a>
-                                <ul class="gw-submenu">
-
-                                    <li> <a href="#/people"><span class="fa-people webfont-submenu"></span>اشخاص</a> </li>
-                                    <li> <a href="#"><span class="fa-section webfont-submenu"></span>قسمت</a> </li>
-                                    <li> <a href="#/costTypes"><span class="fa-costtype webfont-submenu"></span>نوع هزینه</a> </li>
-                      
-                                    <li> <a href="#/sellers"><span class="fa-seller webfont-submenu"></span>فروشنده</a> </li>
-
-                                </ul>
-                            </li>
                             <li class="init-arrow-down">
                                 <a > <span class="gw-menu-text"><span class="glyphicon glyphicon-th-large webfont-menu" aria-hidden="true">
                                     </span>تنظیمات</span> <b class="gw-arrow icon-arrow-up8"></b> </a>
