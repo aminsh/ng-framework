@@ -25,5 +25,7 @@ define(['kendo/js/kendo.angular'], function () {
         .init = function () {
         angular.bootstrap(document, ['appModule']);
     };
+
+    window.appModule = angular.module('appModule');
 })
 

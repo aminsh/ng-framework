@@ -52,12 +52,10 @@ define(['appModule'], function () {
         }
 
         this.$get = function () {
-            debugger;
             return type;
         }
 
         this.set = function (extendedObject) {
-            debugger;
             type = angular.extend(type, extendedObject);
         }
     })

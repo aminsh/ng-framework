@@ -9,6 +9,7 @@ requirejs.config({
         'angular-resource': '/bower_components/angular-resource/angular-resource.min',
         'angular-sanitize': '/bower_components/angular-sanitize/angular-sanitize.min',
         'angular-translate': '/bower_components/angular-translate/angular-translate.min',
+        'angular-translate-loader-url': '/bower_components/angular-translate-loader-url/angular-translate-loader-url.min',
         'linq': '/bower_components/linqjs/linq.min',
         'toastr': '/bower_components/toastr/toastr.min',
         'ui-bootstrap-tpls': '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
@@ -55,6 +56,10 @@ requirejs.config({
         'angular-translate': {
             deps: ['angular'],
             exports: 'angular-translate'
+        },
+        'angular-translate-loader-url': {
+            exports: 'angular-translate-loader-url',
+            deps: ['angular-translate']
         },
         'ui-bootstrap-tpls': {
             exports: 'ui-bootstrap-tpls',
@@ -134,7 +139,11 @@ require([
         'translate',
         'core/directives/numeric',
         'core/services/gridFilterCellType',
-        'app/config/gridFilterCellTypeConfig'
+        'app/config/gridFilterCellTypeConfig',
+        'core/translate.config',
+        'core/shell/shell',
+        'core/services/menuItems',
+        'app/config/menuItemsConfig'
     ],
     function () {
         angular.module('appModule').init();

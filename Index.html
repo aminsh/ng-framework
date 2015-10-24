@@ -5,14 +5,18 @@
     <title></title>
 
 </head>
-<body>
+<body class="k-rtl">
 <script src="bower_components/requirejs/require.js" data-main="src/core/start"></script>
 
-<ctag-header></ctag-header>
-<ctag-togglemenu>
-    <div ng-view class="shuffle-animation">
+<!--<div data-ng-include="'/src/core/shell/shell.html'" ></div>-->
+<div data-ng-controller="shell">
 
-    </div>
-</ctag-togglemenu>
+    <ctag-header></ctag-header>
+    <ctag-togglemenu menuitems="menuItems">
+        <div ng-view class="shuffle-animation">
+
+        </div>
+    </ctag-togglemenu>
+</div>
 </body>
 </html>
