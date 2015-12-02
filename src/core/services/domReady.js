@@ -6,7 +6,7 @@ define({
             '/bower_components/toastr/toastr.min.css',
             'src/core/content/styles.css',
             '/bower_components/js-helper/src/kendo/css/kendo.common.min.css',
-            '/bower_components/js-helper/src/kendo/css/kendo.material.min.css',
+            '/bower_components/js-helper/src/kendo/css/kendo.bootstrap.min.css',
             '/bower_components/js-helper/src/kendo/css/kendo.rtl.min.css'
         ];
 
