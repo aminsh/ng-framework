@@ -1,70 +1,38 @@
-﻿
-<article>
-    <div id="wrapper">
+﻿<article>
+    <div id="wrapper" class="{{toggleobservable ? 'toggled' : ''}}">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            
+
             <div class="gw-sidebar">
                 <div id="gw-sidebar" class="gw-sidebar">
                     <div class="nano-content">
                         <ul class="gw-nav gw-nav-list">
-                            <li class="init-un-active"> <a href="#"><span class="glyphicon glyphicon-home webfont-menu" aria-hidden="true">
-                                </span> <span class="gw-menu-text">صفحه اصلی</span> </a> </li>
+                            <li class="init-un-active"><a href="#"><span class="glyphicon glyphicon-home webfont-menu"
+                                                                         aria-hidden="true">
+                                </span> <span class="gw-menu-text">صفحه اصلی</span> </a></li>
 
                             <li class="init-arrow-down">
-                                <a >
-                                    <span class="webfont-textfile webfont-menu " aria-hidden="true">
-                                        <span class="glyphicon glyphicon-shopping-cart webfont-order-cart" aria-hidden="true"></span>
-                                    </span>
-                                    <span class="gw-menu-text">سفارش کالا</span><b class="gw-arrow icon-arrow-up8"></b>
-                                </a>
-                                    <ul class="gw-submenu">
-                                        <li> <a href="#/orderGoods"><span class="webfont-submenu fa-list"></span>لیست کالاها</a> </li>
-                                        <li> <a href="#/orderGood/create"><span class="webfont-submenu fa-newgood"></span>ایجاد کالای جدید</a> </li>
-
-
-                                    </ul>
-                                
-                            </li>
-
-                            <li class="init-arrow-down" ng-repeat="item in menuitems">
-                                <a href="#/{{item.url}}">
-                                    <span class="webfont-textfile webfont-menu " aria-hidden="true">
-                                        <span class="glyphicon glyphicon-plane {{item.icon}}" aria-hidden="true"></span>
-                                    </span>
-                                    <span class="gw-menu-text">{{item.title}}</span>
-                                    <b class="gw-arrow icon-arrow-up8"></b>
-                                </a>
-                                <ul class="gw-submenu">
-                                    <li ng-repeat="child in item.children">
-                                        <a href="#/{{child.url}}">
-                                            <span class="webfont-submenu {{child.icon}}"></span>
-                                            {{child.title}}
-                                        </a>
-                                    </li>
-                                </ul>
-
-                            </li>
-
-                            <li class="init-arrow-down">
-                                <a > <span class="gw-menu-text"><span class="glyphicon glyphicon-th-large webfont-menu" aria-hidden="true">
+                                <a> <span class="gw-menu-text"><span class="glyphicon glyphicon-th-large webfont-menu"
+                                                                     aria-hidden="true">
                                     </span>تنظیمات</span> <b class="gw-arrow icon-arrow-up8"></b> </a>
                                 <ul class="gw-submenu">
-                                    <li> <a href="#"><span class="fa-managing webfont-submenu" aria-hidden="true"></span>مدیریت سیستم</a> </li>
-                                    <li> <a href="#"><span class="fa-default webfont-submenu" aria-hidden="true"></span> پیش فرض های سیستم</a> </li>
-                                    
+                                    <li><a href="#"><span class="fa-managing webfont-submenu" aria-hidden="true"></span>مدیریت
+                                        سیستم</a></li>
+                                    <li><a href="#"><span class="fa-default webfont-submenu" aria-hidden="true"></span>
+                                        پیش فرض های سیستم</a></li>
+
                                 </ul>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <!-- /#sidebar-wrapper -->
 
-        
+
         <!-- Page Content -->
         <div id="page-content-wrapper" class="content-total">
             <div class="container-fluid">

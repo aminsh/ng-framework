@@ -8,7 +8,6 @@ define(['appModule'], function () {
          ]
          }
          */
-        debugger;
         menuItemsProvider.add({
             title: 'Document',
             url: '#/',

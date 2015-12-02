@@ -10,7 +10,9 @@ requirejs.config({
         'angular-sanitize': '/bower_components/angular-sanitize/angular-sanitize.min',
         'angular-translate': '/bower_components/angular-translate/angular-translate.min',
         'angular-translate-loader-url': '/bower_components/angular-translate-loader-url/angular-translate-loader-url.min',
-        'linq': '/bower_components/linqjs/linq.min',
+        'linqjs': '/bower_components/linqjs/linq.min',
+        'js-helper/index': '/bower_components/js-helper/src/index',
+        'js-helper': '/bower_components/js-helper/src',
         'toastr': '/bower_components/toastr/toastr.min',
         'ui-bootstrap-tpls': '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
         'appModule': 'core/app.module',
@@ -130,6 +132,7 @@ requirejs.config({
 });
 
 require([
+        'js-helper/index',
         'domReady!',
         'routeConfig',
         'menu',

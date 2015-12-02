@@ -44,7 +44,6 @@
                 modalInstance.result.then(function (result) {
                     deferred.resolve(result);
                 }, function (a) {
-                    debugger;
                     //$log.info('Modal dismissed at: ' + new Date());
                 });
 

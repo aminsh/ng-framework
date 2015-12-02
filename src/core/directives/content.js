@@ -5,7 +5,6 @@ angular.module('appModule').directive('ctagContent', function(){
         transclude: true,
 
         link: function(scope, element , attrs){
-            debugger;
             scope.title = attrs.title;
         }
     };

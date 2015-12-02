@@ -9,7 +9,6 @@ define(['appModule'], function () {
         }
 
         self.add = function (item) {
-            debugger;
             menuItems.push(item);
 
             return self;

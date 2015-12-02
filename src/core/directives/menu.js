@@ -20,7 +20,8 @@ angular.module('appModule').directive('ctagTogglemenu', function () {
         templateUrl: 'src/core/directives/templates/togglemenu-template.html',
         replace: true,
         scope: {
-            menuitems: '='
+            menuitems: '=',
+            toggleobservable: '='
         },
         transclude: true,
         link: function (scope, element, attrs) {
@@ -29,45 +30,91 @@ angular.module('appModule').directive('ctagTogglemenu', function () {
                 $("#wrapper").toggleClass("toggled");
             });
 
-            var nav = function () {
-                $('.gw-nav > li > a').click(function () {
-                    var gw_nav = $('.gw-nav');
-                    gw_nav.find('li').removeClass('active');
-                    $('.gw-nav > li > ul > li').removeClass('active');
-
-                    var checkElement = $(this).parent();
-                    var ulDom = checkElement.find('.gw-submenu')[0];
-
-                    if (ulDom == undefined) {
-                        checkElement.addClass('active');
-                        $('.gw-nav').find('li').find('ul:visible').slideUp();
-                        return;
-                    }
-                    if (ulDom.style.display != 'block') {
-                        gw_nav.find('li').find('ul:visible').slideUp();
-                        gw_nav.find('li.init-arrow-up').removeClass('init-arrow-up').addClass('arrow-down');
-                        gw_nav.find('li.arrow-up').removeClass('arrow-up').addClass('arrow-down');
-                        checkElement.removeClass('init-arrow-down');
-                        checkElement.removeClass('arrow-down');
-                        checkElement.addClass('arrow-up');
-                        checkElement.addClass('active');
-                        checkElement.find('ul').slideDown(300);
-                    } else {
-                        checkElement.removeClass('init-arrow-up');
-                        checkElement.removeClass('arrow-up');
-                        checkElement.removeClass('active');
-                        checkElement.addClass('arrow-down');
-                        checkElement.find('ul').slideUp(300);
-
-                    }
-                });
-                $('.gw-nav > li > ul > li > a').click(function () {
-                    $(this).parent().parent().removeClass('active');
-                    $('.gw-nav > li > ul > li').removeClass('active');
-                    $(this).parent().addClass('active')
-                });
-            };
-            nav();
+            createMenu(scope.menuitems, element);
         }
     }
 });
+
+function createMenu(menuItems, element) {
+    menuItems.forEach(function (item) {
+        var $el = $(element).find('.gw-nav');
+        var icon = item.icon || 'file';
+
+        var li = $('<li class="init-arrow-down"></li>');
+        li.append('<a href="{0}"></a>'.format(item.url));
+        li.find('a').append('<span class="webfont-menu" aria-hidden="true">' +
+        '<span class="glyphicon glyphicon-{0}"></span>'.format(icon) +
+        '</span>'.format(icon));
+
+        li.find('a').append('<span class="gw=menu-text">{0}</span>'.format(item.title));
+
+        if (item.children.length > 0) {
+            li.find('a').append('<b class="gw-arrow icon-arrow-up8"></b>');
+            li.append('<ul class="gw-submenu"></ul>');
+
+            item.children.forEach(function (child) {
+                var liChild = $('<li></li>');
+                var icon = child.icon || 'file';
+
+                liChild.append('<a></a>');
+                liChild.find('a')
+                    .append('<span class="webfont-submenu glyphicon glyphicon-{0}"></span>'
+                        .format(icon));
+
+                liChild.find('a').append(child.title);
+
+                li.find('ul').append(liChild);
+            });
+        }
+        ;
+
+        $el.append(li);
+    });
+
+    menuCreateExpandAndActiveBehavior($(element));
+}
+
+function menuCreateExpandAndActiveBehavior($element) {
+    var $ele = function (selector) {
+        return $element.find(selector);
+    };
+
+    $ele('.gw-nav > li > a').click(function () {
+        var gw_nav = $ele('.gw-nav');
+        gw_nav.find('li').removeClass('active');
+        $ele('.gw-nav > li > ul > li').removeClass('active');
+
+        var checkElement = $(this).parent();
+        var ulDom = checkElement.find('.gw-submenu')[0];
+
+        if (ulDom == undefined) {
+            checkElement.addClass('active');
+            $ele('.gw-nav').find('li').find('ul:visible').slideUp();
+            return;
+        }
+        if (ulDom.style.display != 'block') {
+            gw_nav.find('li').find('ul:visible').slideUp();
+            gw_nav.find('li.init-arrow-up').removeClass('init-arrow-up').addClass('arrow-down');
+            gw_nav.find('li.arrow-up').removeClass('arrow-up').addClass('arrow-down');
+            checkElement.removeClass('init-arrow-down');
+            checkElement.removeClass('arrow-down');
+            checkElement.addClass('arrow-up');
+            checkElement.addClass('active');
+            checkElement.find('ul').slideDown(300);
+        } else {
+            checkElement.removeClass('init-arrow-up');
+            checkElement.removeClass('arrow-up');
+            checkElement.removeClass('active');
+            checkElement.addClass('arrow-down');
+            checkElement.find('ul').slideUp(300);
+
+        }
+    });
+    $('.gw-nav > li > ul > li > a').click(function () {
+        $ele(this).parent().parent().removeClass('active');
+        $ele('.gw-nav > li > ul > li').removeClass('active');
+        $(this).parent().addClass('active')
+    });
+};
+
+
