@@ -1,4 +1,4 @@
-function homeController($scope, confirm, logger, gridFilterCellType) {
+function homeController($scope, confirm, logger, gridFilterCellType, modalSample) {
     ;
     $scope.title = "Home";
     $scope.save = function (form) {
@@ -11,10 +11,16 @@ function homeController($scope, confirm, logger, gridFilterCellType) {
                 logger.success();
             })
     };
+
+    $scope.showModal = function () {
+        modalSample.show({body: 'Test Modal is successful or not !'})
+            .then(function (result) {
+                debugger;
+            });
+    }
 }
 
-angular.module('appModule').register.controller('homeController', homeController);
 
-define(['appModule'], function (appModule) {
-
+define(['appModule', 'app/modal/modalSample'], function (appModule) {
+    angular.module('appModule').register.controller('homeController', homeController);
 });

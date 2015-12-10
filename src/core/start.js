@@ -25,7 +25,7 @@ requirejs.config({
         'translate': 'core/services/translate',
         'routeResolver': 'core/services/routeResolver',
         'routeConfig': 'app/route.config',
-
+        'modalBase': 'core/services/modalBase',
 
         //directives
         'menu': 'core/directives/menu',
@@ -140,6 +140,7 @@ require([
         'logger',
         'confirm',
         'translate',
+        'modalBase',
         'core/directives/numeric',
         'core/services/gridFilterCellType',
         'app/config/gridFilterCellTypeConfig',
